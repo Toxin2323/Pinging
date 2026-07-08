@@ -10,6 +10,10 @@ jobs:
   ping:
     runs-on: ubuntu-latest
 
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
     steps:
       - name: Insert Ping
         run: |
@@ -29,7 +33,3 @@ jobs:
             "$SUPABASE_URL/rest/v1/ping?created_at=lt.$CUTOFF" \
             -H "apikey: $SERVICE_ROLE" \
             -H "Authorization: Bearer $SERVICE_ROLE"
-
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
