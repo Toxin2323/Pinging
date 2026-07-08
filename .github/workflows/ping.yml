@@ -15,6 +15,11 @@ jobs:
       SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
     steps:
+      - name: Check secrets
+        run: |
+          echo "URL length: ${#SUPABASE_URL}"
+          echo "KEY length: ${#SERVICE_ROLE}"
+          
       - name: Insert Ping
         run: |
           curl -X POST \
